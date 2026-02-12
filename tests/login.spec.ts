@@ -4,7 +4,7 @@ import users from '../test-data/users.json';
 
 
 // test('Login with valid user', async ({ page }) => {
-//   await page.goto('');
+//   await page.goto('https://www.saucedemo.com/');
 
 //   await page.fill('#user-name', users.validUser.username);
 //   await page.fill('#password', users.validUser.password);
@@ -22,5 +22,6 @@ test('Valid Login Flow', async ({ page }) => {
         users.validUser.username,
         users.validUser.password
     );
+
     await expect(page).toHaveURL(/inventory/);
 });
