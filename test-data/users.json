@@ -1,0 +1,34 @@
+{
+  "validUser": {
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "role": "standard",
+    "expectedUrl": "/inventory.html"
+  },
+  "lockedUser": {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "role": "locked",
+    "expectedError": "Sorry, this user has been locked out."
+  },
+  "problemUser": {
+    "username": "problem_user",
+    "password": "secret_sauce",
+    "role": "problem"
+  },
+  "performanceUser": {
+    "username": "performance_glitch_user",
+    "password": "secret_sauce",
+    "role": "performance"
+  },
+  "errorUser": {
+    "username": "error_user",
+    "password": "secret_sauce",
+    "role": "error"
+  },
+  "visualUser": {
+    "username": "visual_user",
+    "password": "secret_sauce",
+    "role": "visual"
+  }
+}
