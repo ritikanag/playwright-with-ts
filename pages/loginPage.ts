@@ -1,15 +1,17 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class LoginPage {
 
     private usernameInput: Locator;
     private passwordInput: Locator;
     private loginButton: Locator;
+    private errorMessage: Locator;
 
     constructor(private page: Page) {
         this.usernameInput = page.locator('#user-name');
         this.passwordInput = page.locator('#password');
         this.loginButton = page.locator('#login-button');
+        this.errorMessage = page.locator('[data-test="error"]');
     }
 
     async goto() {
@@ -20,6 +22,11 @@ export class LoginPage {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
+    }
+
+    async expectLockedUserError() {
+        await expect(this.errorMessage)
+        .toContainText('Sorry, this user has been locked out.');
     }
 
 }

@@ -33,10 +33,5 @@ test('Locked  User Login Flow', async ({ page }) => {
         users.lockedUser.username,
         users.lockedUser.password
     );
-    
-    const errorMessage = page.locator('[data-test="error"]');
-    await expect(errorMessage).toBeVisible();
-    await expect(errorMessage).toContainText(
-        'Sorry, this user has been locked out.'
-    );
+    await loginPage.expectLockedUserError();
 });
