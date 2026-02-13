@@ -12,16 +12,31 @@ import users from '../test-data/users.json';
 
 //   await expect(page).toHaveURL(/inventory/);
 // });
+// Declare a variable that will later store a LoginPage object.
+let loginPage: LoginPage; 
 
+test.beforeEach(async ({ page }) => {
+    loginPage = new LoginPage(page);
+    await loginPage.goto();
+});
 
 test('Valid Login Flow', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-
-    await loginPage.goto();
     await loginPage.login(
         users.validUser.username,
         users.validUser.password
     );
-
     await expect(page).toHaveURL(/inventory/);
+});
+
+test('Locked  User Login Flow', async ({ page }) => {
+    await loginPage.login(
+        users.lockedUser.username,
+        users.lockedUser.password
+    );
+    
+    const errorMessage = page.locator('[data-test="error"]');
+    await expect(errorMessage).toBeVisible();
+    await expect(errorMessage).toContainText(
+        'Sorry, this user has been locked out.'
+    );
 });
